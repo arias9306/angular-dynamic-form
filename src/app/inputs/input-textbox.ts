@@ -8,6 +8,6 @@ export class InputTextbox extends InputBase<string> {
   constructor(options: {} = {}) {
     super(options);
     this.type = options['type'] || '';
-    this.icon = options['icon'] || '';
+    this.icon = options['icon'] || undefined;
   }
 }
