@@ -1,12 +1,19 @@
 <div [formGroup]="form">
-
-  <label [attr.for]="input.key">{{input.label}}</label>
-
-
   <div [ngSwitch]="input.controlType">
     <!-- Input Text -->
-    <input *ngSwitchCase="'textbox'" [formControlName]="input.key" [id]="input.key" [type]="input.type">
-    
+    <div *ngSwitchCase="'textbox'">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ input.label }}</mat-label>
+        <input
+          matInput
+          [formControlName]="input.key"
+          [id]="input.key"
+          [placeholder]="input.label"
+          [type]="input.type"
+        />
+        <mat-icon matSuffix>{{input.icon}}</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </div>
   </div>
-
 </div>

@@ -20,7 +20,8 @@ export class AppComponent implements OnInit {
         key: "input1",
         label: "input 1",
         value: "",
-        order: 1
+        order: 1,
+        icon: 'android'
       }),
       new InputTextbox({
         key: "input2",
