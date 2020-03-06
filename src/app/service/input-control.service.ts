@@ -10,7 +10,7 @@ export class InputControlService {
   constructor() { }
 
   toFormGroup(inputs: InputBase<string>[]): FormGroup {
-    let formModel: any = {};
+    const formModel: any = {};
 
     inputs.forEach(input => {
       formModel[input.key] = input.validators.length > 0

@@ -1,11 +1,12 @@
-import { InputBase, Options } from '../models/input-base';
+import { InputBase, Options, KeyValue } from '../models/input-base';
+import { Observable, of } from 'rxjs';
 
 export class InputSelect extends InputBase<string> {
   controlType = 'select';
-  options: { key: string, value: string }[] = [];
+  options: Observable<KeyValue[]>;
 
   constructor(options: Options<string> = {}) {
     super(options);
-    this.options = options['options'] || [];
+    this.options = options['options'] || of([]);
   }
 }

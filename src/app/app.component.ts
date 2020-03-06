@@ -3,8 +3,10 @@ import { Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { InputSelect } from './inputs/input-select';
 import { InputTextbox } from './inputs/input-textbox';
-import { InputBase } from './models/input-base';
+import { InputBase, KeyValue } from './models/input-base';
 import { InputCheckBox } from './inputs/intput-checkbox';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -14,18 +16,31 @@ import { InputCheckBox } from './inputs/intput-checkbox';
 export class AppComponent implements OnInit {
   title = 'angular-dynamic-forms';
   inputElements$: Observable<InputBase<any>[]>;
-
+  todos$: Observable<KeyValue[]>;
   ngOnInit(): void {}
 
-  constructor() {
-    let inputs: InputBase<any>[] = [
+  constructor(private http: HttpClient) {
+    this.todos$ = this.http
+      .get<KeyValue[]>('https://jsonplaceholder.typicode.com/users')
+      .pipe(
+        map((response: any[]) => {
+          return response.map(i => {
+            let keyValue = new KeyValue();
+            keyValue.key = i.id;
+            keyValue.value = i.name;
+            return keyValue;
+          });
+        })
+      );
+
+    const inputs: InputBase<any>[] = [
       new InputTextbox({
         key: 'input1',
         label: 'input 1',
         value: 'Default Value',
         order: 1,
         validators: [Validators.required],
-        errorMessages: [{ key: 'required', value: 'El input1 es Requerido'}]
+        errorMessages: [{ key: 'required', value: 'El input1 es Requerido' }]
       }),
       new InputTextbox({
         key: 'input2',
@@ -43,20 +58,27 @@ export class AppComponent implements OnInit {
       new InputSelect({
         key: 'input4',
         label: 'Select Input',
-        options: [
+        options: of([
           { key: '1', value: 'Item 1' },
           { key: '2', value: 'Item 2' },
           { key: '3', value: 'Item 3' },
           { key: '4', value: 'Item 4' }
-        ],
+        ]),
         order: 4,
-        validators: [Validators.required],
+        validators: [Validators.required]
       }),
       new InputCheckBox({
         key: 'input5',
         label: 'checkbox',
         order: 5,
         value: false,
+        validators: [Validators.required]
+      }),
+      new InputSelect({
+        key: 'input6',
+        label: 'Select Input TEST',
+        options: this.todos$,
+        order: 6,
         validators: [Validators.required]
       })
     ];

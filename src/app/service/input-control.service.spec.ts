@@ -6,7 +6,7 @@ describe('InputControlService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: InputControlService = TestBed.get(InputControlService);
+    const service: InputControlService = TestBed.inject(InputControlService);
     expect(service).toBeTruthy();
   });
 });

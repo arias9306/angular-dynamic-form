@@ -1,4 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 export class InputBase<T> {
   value: T;
@@ -9,8 +10,8 @@ export class InputBase<T> {
   type: string;
   icon: string;
   validators: ValidatorFn[];
-  options: { key: string, value: string }[];
-  errorMessages: { key: string, value: string }[];
+  options: Observable<KeyValue[]>;
+  errorMessages: KeyValue[];
 
   constructor(options: Options<T> = {}) {
     this.value = options.value;
@@ -34,6 +35,11 @@ export class Options<T> {
   type?: string;
   icon?: string;
   validators?: ValidatorFn[];
-  options?: { key: string; value: string }[];
-  errorMessages?: { key: string; value: string }[];
+  options?: Observable<KeyValue[]>;
+  errorMessages?: KeyValue[];
+}
+
+export class KeyValue {
+  key: string;
+  value: string;
 }

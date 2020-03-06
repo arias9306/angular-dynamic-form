@@ -23,13 +23,15 @@ export class DynamicInputComponent implements OnInit {
   }
 
   get errors(): string {
-    let message: string = '';
+    let message = '';
     const control = this.form.controls[this.input.key];
-    if(control.invalid) {
+    if (control.invalid) {
       const errors = control.errors as ValidationErrors;
       if (this.input.errorMessages.length > 0) {
-        for (let key in errors) {
-          message += this.input.errorMessages.find(x => x.key === key).value;
+        for (const key in Object.keys(errors)) {
+          if (errors.hasOwnProperty(key)) {
+            message += this.input.errorMessages.find(x => x.key === key).value;
+          }
         }
       }
       if (message === '') {
@@ -42,7 +44,7 @@ export class DynamicInputComponent implements OnInit {
   get isRequired() {
     const control = this.form.controls[this.input.key];
     if (this.input.validators.length > 0) {
-      var validator = control.validator(control);
+      const validator = control.validator(control);
       return validator ? validator.required : false;
     }
     return false;
