@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { InputSelect } from './inputs/input-select';
 import { InputTextbox } from './inputs/input-textbox';
@@ -22,13 +23,14 @@ export class AppComponent implements OnInit {
         label: 'input 1',
         value: '',
         order: 1,
-        required: true
+        validators: [Validators.required]
       }),
       new InputTextbox({
         key: 'input2',
         label: 'input 2',
         value: '',
-        order: 2
+        order: 2,
+        validators: [Validators.minLength(2)]
       }),
       new InputTextbox({
         key: 'input3',

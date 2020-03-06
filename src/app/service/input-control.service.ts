@@ -13,8 +13,8 @@ export class InputControlService {
     let formModel: any = {};
 
     inputs.forEach(input => {
-      formModel[input.key] = input.required
-        ? new FormControl(input.value || '', Validators.required)
+      formModel[input.key] = input.validators.length > 0
+        ? new FormControl(input.value || '', [...input.validators])
         : new FormControl(input.value || '');
     });
 
