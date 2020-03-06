@@ -23,7 +23,8 @@ export class AppComponent implements OnInit {
         label: 'input 1',
         value: '',
         order: 1,
-        validators: [Validators.required]
+        validators: [Validators.required],
+        errorMessages: [{ key: 'required', value: 'El input1 es Requerido'}]
       }),
       new InputTextbox({
         key: 'input2',
@@ -47,7 +48,9 @@ export class AppComponent implements OnInit {
           { key: '3', value: 'Item 3' },
           { key: '4', value: 'Item 4' }
         ],
-        order: 4
+        order: 4,
+        validators: [Validators.required],
+
       })
     ];
 

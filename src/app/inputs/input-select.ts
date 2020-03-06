@@ -1,13 +1,11 @@
-import { InputBase } from '../models/input-base';
+import { InputBase, Options } from '../models/input-base';
 
 export class InputSelect extends InputBase<string> {
   controlType = 'select';
-  options: { key: string, value: string}[] = [];
+  options: { key: string, value: string }[] = [];
 
-  constructor(options: {} = {}){
+  constructor(options: Options<string> = {}) {
     super(options);
     this.options = options['options'] || [];
   }
-
-
 }
