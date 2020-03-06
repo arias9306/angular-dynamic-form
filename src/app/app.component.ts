@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { InputSelect } from './inputs/input-select';
 import { InputTextbox } from './inputs/input-textbox';
 import { InputBase } from './models/input-base';
+import { InputCheckBox } from './inputs/intput-checkbox';
 
 @Component({
   selector: 'app-root',
@@ -17,11 +18,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {}
 
   constructor() {
-    let inputs: InputBase<string>[] = [
+    let inputs: InputBase<any>[] = [
       new InputTextbox({
         key: 'input1',
         label: 'input 1',
-        value: '',
+        value: 'Default Value',
         order: 1,
         validators: [Validators.required],
         errorMessages: [{ key: 'required', value: 'El input1 es Requerido'}]
@@ -50,7 +51,13 @@ export class AppComponent implements OnInit {
         ],
         order: 4,
         validators: [Validators.required],
-
+      }),
+      new InputCheckBox({
+        key: 'input5',
+        label: 'checkbox',
+        order: 5,
+        value: false,
+        validators: [Validators.required]
       })
     ];
 
