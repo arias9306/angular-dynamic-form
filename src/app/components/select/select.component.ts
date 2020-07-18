@@ -1,49 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { InputBase } from 'src/app/models/input-base';
-import { FormGroup, ValidationErrors } from '@angular/forms';
+import { FormGroup,  FormControl } from '@angular/forms';
+import { BaseValidations } from '../base.validations';
 
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectComponent implements OnInit {
+export class SelectComponent extends BaseValidations implements OnInit {
+
   @Input() input: InputBase<string>;
   @Input() form: FormGroup;
 
-  constructor() {}
-
-  ngOnInit(): void { }
-
-   get isValid(): boolean {
-    return this.form.controls[this.input.key].valid;
+  constructor() {
+    super();
   }
 
-  get errors(): string {
-    let message = '';
-    const control = this.form.controls[this.input.key];
-    if (control.invalid) {
-      const errors = control.errors as ValidationErrors;
-      if (this.input.errorMessages.length > 0) {
-        for (const key in Object.keys(errors)) {
-          if (errors.hasOwnProperty(key)) {
-            message += this.input.errorMessages.find(x => x.key === key).value;
-          }
-        }
-      }
-      if (message === '') {
-        message = 'This field is invalid';
-      }
-    }
-    return message;
+  ngOnInit(): void {
+    this.control = this.form.controls[this.input.key] as FormControl;
+    this.inputElement = this.input;
   }
 
-  get isRequired() {
-    const control = this.form.controls[this.input.key];
-    if (this.input.validators.length > 0) {
-      const validator = control.validator(control);
-      return validator ? validator.required : false;
-    }
-    return false;
-  }
 }
