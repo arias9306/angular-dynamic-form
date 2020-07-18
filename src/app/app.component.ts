@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
       .pipe(
         map((response: any[]) => {
           return response.map(i => {
-            let keyValue = new KeyValue();
+            const keyValue = new KeyValue();
             keyValue.key = i.id;
             keyValue.value = i.name;
             return keyValue;
@@ -41,7 +41,8 @@ export class AppComponent implements OnInit {
         value: 'Default Value',
         order: 1,
         validators: [Validators.required],
-        errorMessages: [{ key: 'required', value: 'El input1 es Requerido' }]
+        errorMessages: [{ key: 'required', value: 'El input1 es Requerido' }],
+        icon: 'alarm'
       }),
       new InputTextbox({
         key: 'input2',

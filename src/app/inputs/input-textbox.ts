@@ -9,7 +9,7 @@ export class InputTextbox extends InputBase<string> {
     options: Options<string> = {}
   ) {
     super(options);
-    this.type = options['type'] || '';
-    this.icon = options['icon'] || undefined;
+    this.type = options.type || '';
+    this.icon = options.icon || undefined;
   }
 }

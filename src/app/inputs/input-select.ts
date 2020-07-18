@@ -7,6 +7,6 @@ export class InputSelect extends InputBase<string> {
 
   constructor(options: Options<string> = {}) {
     super(options);
-    this.options = options['options'] || of([]);
+    this.options = options.options || of([]);
   }
 }
