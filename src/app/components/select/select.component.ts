@@ -1,21 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { InputBase } from 'src/app/models/input-base';
-import { FormGroup, ValidationErrors, FormControl } from '@angular/forms';
+import { FormGroup, ValidationErrors } from '@angular/forms';
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.css']
+  selector: 'app-select',
+  templateUrl: './select.component.html',
+  styleUrls: ['./select.component.css'],
 })
-export class InputComponent implements OnInit {
-
+export class SelectComponent implements OnInit {
   @Input() input: InputBase<string>;
   @Input() form: FormGroup;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
    get isValid(): boolean {
     return this.form.controls[this.input.key].valid;
@@ -48,5 +46,4 @@ export class InputComponent implements OnInit {
     }
     return false;
   }
-
 }

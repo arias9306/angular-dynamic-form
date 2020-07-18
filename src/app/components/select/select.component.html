@@ -1,15 +1,15 @@
 <div [formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>{{ input.label }}</mat-label>
-    <input
-      matInput
+    <mat-select
       [formControlName]="input.key"
       [id]="input.key"
-      [placeholder]="input.label"
-      [type]="input.type"
       [required]="isRequired"
-    />
-    <mat-icon *ngIf="input.icon" matSuffix>{{ input.icon }}</mat-icon>
+    >
+      <mat-option *ngFor="let item of input.options | async" [value]="item.key">
+        {{ item.value }}
+      </mat-option>
+    </mat-select>
     <mat-error align="end" *ngIf="!isValid">{{ errors }}</mat-error>
   </mat-form-field>
 </div>

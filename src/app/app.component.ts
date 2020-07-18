@@ -48,7 +48,8 @@ export class AppComponent implements OnInit {
         label: 'input 2',
         value: '',
         order: 2,
-        validators: [Validators.minLength(2)]
+        validators: [Validators.minLength(2)],
+        errorMessages: [{ key: 'minlength', value: 'Debe ser mas de 2 '}]
       }),
       new InputTextbox({
         key: 'input3',
@@ -72,7 +73,7 @@ export class AppComponent implements OnInit {
         key: 'input5',
         label: 'checkbox',
         order: 5,
-        value: false,
+        value: true,
         validators: [Validators.required]
       }),
       new InputSelect({

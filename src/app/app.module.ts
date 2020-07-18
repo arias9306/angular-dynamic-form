@@ -17,13 +17,17 @@ import { AppComponent } from './app.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { DynamicInputComponent } from './dynamic-input/dynamic-input.component';
 import { InputComponent } from './components/input/input.component';
+import { SelectComponent } from './components/select/select.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DynamicFormComponent,
     DynamicInputComponent,
-    InputComponent
+    InputComponent,
+    SelectComponent,
+    CheckboxComponent
   ],
   imports: [
     BrowserModule,
