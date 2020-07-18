@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "angular-dynamic-forms"
+  "defaultProject": "angular-dynamic-forms",
+  "cli": {
+    "analytics": "60f0e73e-ad5c-4545-becb-cb04a5279290"
+  }
 }

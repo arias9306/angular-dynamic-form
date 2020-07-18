@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
         })
       );
 
+
     const inputs: InputBase<any>[] = [
       new InputTextbox({
         key: 'input1',
@@ -80,6 +81,12 @@ export class AppComponent implements OnInit {
         options: this.todos$,
         order: 6,
         validators: [Validators.required]
+      }),
+      new InputTextbox({
+        key: 'input7',
+        label: 'Property Gorrini',
+        order: 7,
+        validators: [Validators.required, Validators.maxLength(2)]
       })
     ];
 
