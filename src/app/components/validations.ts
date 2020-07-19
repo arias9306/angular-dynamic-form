@@ -13,7 +13,10 @@ export function getErrorsMessage(input: InputBase<any>, control: FormControl): s
     if (input.errorMessages.length > 0 && errors) {
       const keyErrors = Object.keys(errors) as string[];
       for (const key of keyErrors) {
-          message += input.errorMessages.find(x => x.key === key)?.value;
+        if (message !== '') {
+          message += ', ';
+        }
+        message += input.errorMessages.find(x => x.key === key)?.value;
       }
     }
     if (message === '') {
@@ -24,9 +27,9 @@ export function getErrorsMessage(input: InputBase<any>, control: FormControl): s
 }
 
 export function isRequiredControl(control: FormControl, input: InputBase<any>) {
-    if (input.validators.length > 0) {
-      const validator = control.validator(control);
-      return validator ? validator.required : false;
-    }
-    return false;
+  if (input.validators.length > 0) {
+    const validator = control.validator(control);
+    return validator ? validator.required : false;
+  }
+  return false;
 }

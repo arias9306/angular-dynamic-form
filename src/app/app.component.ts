@@ -49,8 +49,8 @@ export class AppComponent implements OnInit {
         label: 'input 2',
         value: '',
         order: 2,
-        validators: [Validators.minLength(2)],
-        errorMessages: [{ key: 'minlength', value: 'Debe ser mas de 2 '}]
+        validators: [Validators.minLength(2), Validators.email],
+        errorMessages: [{ key: 'minlength', value: 'Debe ser mas de 2 '}, { key: 'email', value: 'email no valido'}]
       }),
       new InputTextbox({
         key: 'input3',
